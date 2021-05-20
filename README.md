@@ -5,8 +5,8 @@ A port of Liquity to Solana, in Rust
 # How to build
 1. Install Rust compiler;
 2. Install Solana SDK;
-3. Install Solana CLI (v1.6.8);
-cargo install spl-token-cli
+3. Install Solana CLI (v1.6.8):
+sh -c "$(curl -sSfL https://release.solana.com/v1.6.9/install)"
 
 4. Install node js (latest version);
 5. Install yarn.
@@ -32,7 +32,7 @@ solana create-address-with-seed
 solana address
 
 # Get devnet SOL using Solana CLI
-solana airdrop 1 <your Solana personal address>
+solana airdrop 1 <your Solana personal address as output by solana address>
 solana balance
 
 # Deploy
