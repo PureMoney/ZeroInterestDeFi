@@ -27,13 +27,22 @@ solana config get
 cd program
 cargo build-bpf
 
+# Get your address and passphrase, taking note of seed / passphrase
+solana create-address-with-seed
+solana address
+
 # Get devnet SOL using Solana CLI
 solana airdrop 1 <your Solana personal address>
+solana balance
+
+# Deploy
+solana program deploy <path to elf as output by cargo build-bpf>
 
 # Run tests
 cargo test-bpf
 
 # Complete UI build
+cd ..
 yarn build
 
 # Start UI
