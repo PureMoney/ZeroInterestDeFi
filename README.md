@@ -28,7 +28,7 @@ cd program
 cargo build-bpf
 
 # Get your address and passphrase, taking note of seed / passphrase
-solana create-address-with-seed
+solana-keygen new --no-passphrase --no-outfile
 solana address
 
 # Get devnet SOL using Solana CLI
