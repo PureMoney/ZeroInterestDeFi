@@ -24,17 +24,12 @@ yarn
 ```
 solana config get
 ```
-`Should output:`
-
-`Config File: /home/<yourname>/.config/solana/cli/config.yml`
-
-`RPC URL: https://api.devnet.solana.com`
-
-`WebSocket URL: wss://api.devnet.solana.com/ (computed)`
-
-`Keypair Path: /home/<yourname>/.config/solana/id.json`
-
-`Commitment: confirmed`
+`Should output:
+Config File: /home/<yourname>/.config/solana/cli/config.yml
+RPC URL: https://api.devnet.solana.com
+WebSocket URL: wss://api.devnet.solana.com/ (computed)
+Keypair Path: /home/<yourname>/.config/solana/id.json
+Commitment: confirmed`
 
 # Solana program build and deployment
 (See also README.md in the program folder.)
