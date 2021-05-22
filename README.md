@@ -25,6 +25,7 @@ yarn
 solana config get
 ```
 `Should output:
+
 Config File: /home/<yourname>/.config/solana/cli/config.yml
 RPC URL: https://api.devnet.solana.com
 WebSocket URL: wss://api.devnet.solana.com/ (computed)
