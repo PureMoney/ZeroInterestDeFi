@@ -1,5 +1,8 @@
 [workspace]
 members = [
-    "main/program",
-    "token/program"
+    "main",
+    "token/spl",
+    "token/cli",
+    "associated-token-account",
+    "memo"
 ]
