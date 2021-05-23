@@ -2,8 +2,9 @@
 A port of Liquity to Solana, in Rust
 
 Assume that the network is devnet.
+# How to build
 ## Install Tools
-1. Install Rust compiler;
+1. Install the latest Rust stable from https://rustup.rs/;
 2. Install Solana SDK;
 3. Install Solana CLI (v1.6.8):
 ```
@@ -30,8 +31,7 @@ WebSocket URL: wss://api.devnet.solana.com/ (computed)
 Keypair Path: /home/<yourname>/.config/solana/id.json
 Commitment: confirmed
 ```
-
-## Solana program build and deployment
+# Solana program build and deployment
 (See also README.md in the program folder.)
 ```
 cd program
