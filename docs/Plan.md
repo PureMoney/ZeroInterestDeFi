@@ -19,6 +19,7 @@ Deliverable:
 
 1. Stake Stability Pool : ROKS (I am the same person that borrowed)
 2. Unstake
+3. Interface to Pyth oracle for retrieving SOL exchange rate
 
 ## Milestone 4 : Liquidation
 
