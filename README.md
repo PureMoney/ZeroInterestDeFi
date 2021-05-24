@@ -23,14 +23,14 @@ yarn
 ## First, check configuration
 ```
 solana config get
-```
-``Should output:
+
+Expected output:
 Config File: /home/<yourname>/.config/solana/cli/config.yml
 RPC URL: https://api.devnet.solana.com
 WebSocket URL: wss://api.devnet.solana.com/ (computed)
 Keypair Path: /home/<yourname>/.config/solana/id.json
-Commitment: confirmed``
-
+Commitment: confirmed
+```
 # Solana program build and deployment
 (See also README.md in the program folder.)
 ```
@@ -51,6 +51,7 @@ solana balance
 ```
 
 ## Deploy
+Note that there are two tokens that need to be deployed, in addition to main zero-percenter.
 ```
 solana program deploy <path to elf as output by cargo build-bpf>
 ```
@@ -60,7 +61,7 @@ solana program deploy <path to elf as output by cargo build-bpf>
 cargo test-bpf
 ```
 
-# UI build
+# Complete UI build
 ```
 cd ..
 yarn build
@@ -70,4 +71,3 @@ yarn build
 ```
 yarn start
 ```
-
