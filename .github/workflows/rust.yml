@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: ./ci/install-build-deps.sh     
     - name: Build
       run: cargo build --verbose --manifest-path=program/Cargo.toml
     - name: Run tests
