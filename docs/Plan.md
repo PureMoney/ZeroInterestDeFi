@@ -7,13 +7,13 @@
 
 Deliverable:
     - Code / Instructions to set this up locally
-    - Private keyspairs to the SPL token accounts
+    - Private key-pairs to the SPL token accounts
 
 ## Milestone 2 : Borrow
 
 1. Deposit SOL
-2. SC: Mint ROKS & Transfer to (Receive) wallet 90.9%
-3. 200 ROKS is set aside for Liquiditation Reserve
+2. SC: Mint stable-token (ROKS) & Transfer to (Receive) wallet 90.9%
+3. 200 stable-token is set aside for Liquiditation Reserve
 
 ## Milestone 3 : Set up Stability Pool
 
@@ -26,7 +26,7 @@ Deliverable:
 1. Can Liquidate a borrower
 2. SOL is sent to Stability Pool depositors
 3. ROKS is burned
-4. 200 ROKS + 0.5% fee is sent to Liquidator
+4. 200 ROKS + 0.5% fee is sent to  (? no fees are charged, and ROKS are burned for liquidation --Carlos)
 
 ## Mileston 5: Redemption
 1. Redeemer redeems 500 ROKS
@@ -38,7 +38,7 @@ Deliverable:
 1. Stake VTT, unstake VTT
 2. Show list of stakers of VTT
 3. Calculate the TVL
-4. Send rewards to early stakers (TBC)
+4. Send rewards to early stakers (TBD)
 
 ## How to get started
 1. Repo: Create a testnet locally

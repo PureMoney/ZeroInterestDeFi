@@ -1,4 +1,4 @@
-// use crate::error::SecondaryTokenError;
+// use crate::error::RewardTokenError;
 use crate::instruction::StakeInstruction;
 
 use solana_program::{
@@ -53,9 +53,9 @@ impl Processor {
     ) -> ProgramResult {
         let account_info_iter = &mut accounts.iter();
 
-        let sec_token_account = next_account_info(account_info_iter)?;
+        let reward_token_account = next_account_info(account_info_iter)?;
 
-        if !sec_token_account.is_signer {
+        if !reward_token_account.is_signer {
             return Err(ProgramError::MissingRequiredSignature);
         }
 

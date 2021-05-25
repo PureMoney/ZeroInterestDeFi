@@ -55,7 +55,15 @@ Note that there are two tokens that need to be deployed, in addition to main zer
 ```
 solana program deploy <path to elf as output by cargo build-bpf>
 ```
-
+During development, we are just going to use the standard SPL token program to create the tokens:
+```
+spl-token create-token
+```
+We can't just create a new token whenever we need to test our system. We have to be working on the same token. The following two tokens should be used when testing in devnet:
+```
+stable-token (ROKS): 2icSYBVSpJVrEaja132iHLELBQ8PG42rZgjHjQGB2Bbu
+reward-token (VTT): 8LqpxvoA6pmXMoxDEYVmNTMvawLZLL6dkzFstDK1B9eb
+```
 ## Run tests
 ```
 cargo test-bpf

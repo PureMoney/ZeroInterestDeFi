@@ -6,7 +6,7 @@ use thiserror::Error;
 
 /// Errors that may be returned by the Token program.
 #[derive(Clone, Debug, Eq, Error, FromPrimitive, PartialEq)]
-pub enum SecondaryTokenError {
+pub enum RewardTokenError {
     /// Lamport balance below rent-exempt threshold.
     #[error("Lamport balance below rent-exempt threshold")]
     NotRentExempt,
@@ -49,48 +49,48 @@ pub enum SecondaryTokenError {
     #[error("Account is frozen")]
     AccountFrozen,
 }
-impl From<SecondaryTokenError> for ProgramError {
-    fn from(e: SecondaryTokenError) -> Self {
+impl From<RewardTokenError> for ProgramError {
+    fn from(e: RewardTokenError) -> Self {
         ProgramError::Custom(e as u32)
     }
 }
-impl<T> DecodeError<T> for SecondaryTokenError {
+impl<T> DecodeError<T> for RewardTokenError {
     fn type_of() -> &'static str {
-        "SecondaryTokenError"
+        "RewardTokenError"
     }
 }
 
 use num_traits::FromPrimitive;
-impl PrintProgramError for SecondaryTokenError {
+impl PrintProgramError for RewardTokenError {
     fn print<E>(&self)
     where
         E: 'static + std::error::Error + DecodeError<E> + PrintProgramError + FromPrimitive,
     {
         match self {
-            SecondaryTokenError::NotRentExempt => msg!("Error: Lamport balance below rent-exempt threshold"),
-            SecondaryTokenError::InsufficientFunds => msg!("Error: insufficient funds"),
-            SecondaryTokenError::OwnerMismatch => msg!("Error: owner does not match"),
-            SecondaryTokenError::AlreadyInUse => msg!("Error: account or token already in use"),
-            SecondaryTokenError::InvalidNumberOfProvidedSigners => {
+            RewardTokenError::NotRentExempt => msg!("Error: Lamport balance below rent-exempt threshold"),
+            RewardTokenError::InsufficientFunds => msg!("Error: insufficient funds"),
+            RewardTokenError::OwnerMismatch => msg!("Error: owner does not match"),
+            RewardTokenError::AlreadyInUse => msg!("Error: account or token already in use"),
+            RewardTokenError::InvalidNumberOfProvidedSigners => {
                 msg!("Error: Invalid number of provided signers")
             }
-            SecondaryTokenError::InvalidNumberOfRequiredSigners => {
+            RewardTokenError::InvalidNumberOfRequiredSigners => {
                 msg!("Error: Invalid number of required signers")
             }
-            SecondaryTokenError::UninitializedState => msg!("Error: State is uninitialized"),
-            SecondaryTokenError::NativeNotSupported => {
+            RewardTokenError::UninitializedState => msg!("Error: State is uninitialized"),
+            RewardTokenError::NativeNotSupported => {
                 msg!("Error: Instruction does not support native tokens")
             }
-            SecondaryTokenError::NonNativeHasBalance => {
+            RewardTokenError::NonNativeHasBalance => {
                 msg!("Error: Non-native account can only be closed if its balance is zero")
             }
-            SecondaryTokenError::InvalidInstruction => msg!("Error: Invalid instruction"),
-            SecondaryTokenError::InvalidState => msg!("Error: Invalid account state for operation"),
-            SecondaryTokenError::Overflow => msg!("Error: Operation overflowed"),
-            SecondaryTokenError::AuthorityTypeNotSupported => {
+            RewardTokenError::InvalidInstruction => msg!("Error: Invalid instruction"),
+            RewardTokenError::InvalidState => msg!("Error: Invalid account state for operation"),
+            RewardTokenError::Overflow => msg!("Error: Operation overflowed"),
+            RewardTokenError::AuthorityTypeNotSupported => {
                 msg!("Error: Account does not support specified authority type")
             }
-            SecondaryTokenError::AccountFrozen => msg!("Error: Account is frozen")
+            RewardTokenError::AccountFrozen => msg!("Error: Account is frozen")
             }
         }
     }
