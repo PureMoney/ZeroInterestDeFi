@@ -41,10 +41,15 @@ export const HomeView = () => {
         </h2>
       </Col>
 
-      <Col span={12}>
+      <Col span={8}>
         <ConnectButton />
       </Col>
-      <Col span={12}>
+      <Col span={8}>
+        <Link to="/staking">
+          <Button>Staking</Button>
+        </Link>
+      </Col>
+      <Col span={8}>
         <Link to="/faucet">
           <Button>Faucet</Button>
         </Link>
