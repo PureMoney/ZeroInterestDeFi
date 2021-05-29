@@ -45,7 +45,7 @@ mod test {
             &[Instruction {
                 program_id,
                 accounts: vec![AccountMeta::new(payer.pubkey(), false)],
-                data: vec![1, 2, 3],
+                data: vec![3, 2, 1],
             }],
             Some(&payer.pubkey()),
         );
