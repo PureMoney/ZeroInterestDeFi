@@ -1,0 +1,19 @@
+/home/ctapang/anchor/examples/pyth/target/debug/deps/librustversion-cd9d9417f0521ccd.so: /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/lib.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/attr.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/bound.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/constfn.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/date.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/error.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/expr.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/iter.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/release.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/time.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/token.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/version.rs /home/ctapang/anchor/examples/pyth/target/debug/build/rustversion-824998a0eae3115a/out/version.rs
+
+/home/ctapang/anchor/examples/pyth/target/debug/deps/rustversion-cd9d9417f0521ccd.d: /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/lib.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/attr.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/bound.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/constfn.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/date.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/error.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/expr.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/iter.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/release.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/time.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/token.rs /home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/version.rs /home/ctapang/anchor/examples/pyth/target/debug/build/rustversion-824998a0eae3115a/out/version.rs
+
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/lib.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/attr.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/bound.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/constfn.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/date.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/error.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/expr.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/iter.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/release.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/time.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/token.rs:
+/home/ctapang/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.5/src/version.rs:
+/home/ctapang/anchor/examples/pyth/target/debug/build/rustversion-824998a0eae3115a/out/version.rs:
+
+# env-dep:OUT_DIR=/home/ctapang/anchor/examples/pyth/target/debug/build/rustversion-824998a0eae3115a/out
