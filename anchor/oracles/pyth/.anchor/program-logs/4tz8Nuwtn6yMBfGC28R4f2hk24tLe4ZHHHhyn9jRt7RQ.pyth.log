@@ -1,0 +1,35 @@
+Streaming transaction logs mentioning 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ. Confirmed commitment
+Transaction executed in slot 59520454:
+  Signature: gu82gCcKJAjUs7JKrEcXryeyTa3PvjTKh4JojKiU2eap7WMKcHSuRJvDrvkhJmGg9nv2dPBPFUsXs4h6TfK8hZk
+  Status: Ok
+  Log Messages:
+    Program 11111111111111111111111111111111 invoke [1]
+    Program 11111111111111111111111111111111 success
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ invoke [1]
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ consumed 3027 of 200000 compute units
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ success
+Transaction executed in slot 59520455:
+  Signature: gu82gCcKJAjUs7JKrEcXryeyTa3PvjTKh4JojKiU2eap7WMKcHSuRJvDrvkhJmGg9nv2dPBPFUsXs4h6TfK8hZk
+  Status: Ok
+  Log Messages:
+    Program 11111111111111111111111111111111 invoke [1]
+    Program 11111111111111111111111111111111 success
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ invoke [1]
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ consumed 3027 of 200000 compute units
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ success
+Transaction executed in slot 59520458:
+  Signature: 2t8WQsb3ci493oZjGpy5PD9D7DnKbGxye9y6EWgJh2Kpp8bQJT1rKLdvWAJKGtkk5YQSRjMJktiHfr7xo2jEDFDo
+  Status: Ok
+  Log Messages:
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ invoke [1]
+    Program log:   price_account .. BdgHsXrH1mXqhdosXavYxZgX6bGqTdj5mh2sxDhF8bJy
+    Program log:     price_type ... price
+    Program log:     exponent ..... -9
+    Program log:     status ....... trading
+    Program log:     corp_act ..... nocorpact
+    Program log:     price ........ 27810000000
+    Program log:     conf ......... 55000000
+    Program log:     valid_slot ... 59520456
+    Program log:     publish_slot . 59520457
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ consumed 18557 of 200000 compute units
+    Program 4tz8Nuwtn6yMBfGC28R4f2hk24tLe4ZHHHhyn9jRt7RQ success

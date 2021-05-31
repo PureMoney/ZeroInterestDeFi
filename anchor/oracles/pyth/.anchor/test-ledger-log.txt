@@ -1,0 +1,9 @@
+Ledger location: .anchor/test-ledger
+Log: .anchor/test-ledger/validator.log
+Identity: 4FT8nCHCrEQUuubtfTFYw1VQdRTGUrkjkW8gaAN81t4h
+Genesis Hash: HUTZYFHEmhw87RjmB2bhVzLqVabUiZh5puQU2FTjDraG
+Version: 1.6.9
+Shred Version: 34981
+Gossip Address: 127.0.0.1:1024
+TPU Address: 127.0.0.1:1027
+JSON RPC URL: http://127.0.0.1:8899
