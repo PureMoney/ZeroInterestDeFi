@@ -28,9 +28,9 @@ describe("Pyth Tests on Node", () => {
         anchor.web3.SystemProgram.createAccount({
           fromPubkey: provider.wallet.publicKey,
           newAccountPubkey: myAccount.publicKey,
-          space: 8 + 8, // Add 8 for the account discriminator.
+          space: 8 + 1704, // Add 8 for the account discriminator.
           lamports: await provider.connection.getMinimumBalanceForRentExemption(
-            8 + 8
+            8 + 1704
           ),
           programId: program.programId,
         }),
@@ -56,6 +56,11 @@ describe("Pyth Tests on Node", () => {
         pythPriceInfo: pythSOLPriceProgKey
       }
     });
+
+    const accountInfo = await provider.connection.getAccountInfo(myAccount.publicKey);
+    console.log('data = ', accountInfo.data);
+
+    assert.ok(accountInfo.data);
     // #endregion code-separated
   });
 });
