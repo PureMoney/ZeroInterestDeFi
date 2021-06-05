@@ -30,7 +30,7 @@ export const LABELS = {
   MENU_FAUCET: "Faucet",
   MENU_TRANSACTION: "Transactions",
   MARGIN_TRADING: "Margin Trading",
-  APP_TITLE: "Oyster Lending",
+  APP_TITLE: "Zero Interest Defi",
   CONNECT_BUTTON: "Connect",
   WALLET_TOOLTIP: "Wallet public key",
   WALLET_BALANCE: "Wallet balance",
@@ -104,4 +104,5 @@ export const LABELS = {
   NO_COLL_TYPE_MESSAGE: "Choose Collateral CCY",
   SAFER: "Safer",
   RISKIER: "Riskier",
+  CONNECT_WALLET_MESSAGE: "Please connect to a wallet before starting",
 };

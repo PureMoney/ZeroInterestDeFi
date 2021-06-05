@@ -6,7 +6,7 @@ import { AccountsProvider } from "./contexts/accounts";
 import { MarketProvider } from "./contexts/market";
 import { AppLayout } from "./components/Layout";
 
-import { FaucetView, HomeView, StakingView } from "./views";
+import { FaucetView, HomeView } from "./views";
 
 export function Routes() {
   return (
@@ -14,17 +14,17 @@ export function Routes() {
       <HashRouter basename={"/"}>
         <ConnectionProvider>
           <WalletProvider>
-              <AccountsProvider>
-                <MarketProvider>
-                  <AppLayout>
-                    <Switch>
-                      <Route exact path="/" component={() => <HomeView />} />
-                      <Route exact path="/faucet" children={<FaucetView />} />
-                      <Route exact path="/staking" children={<StakingView />} />
-                    </Switch>
-                  </AppLayout>
-                  </MarketProvider>
-              </AccountsProvider>
+            <AccountsProvider>
+              <MarketProvider>
+                <AppLayout>
+                  <Switch>
+                    <Route exact path="/" component={() => <HomeView />} />
+                    <Route exact path="/faucet" children={<FaucetView />} />
+                    <Route exact path="*" component={() => <HomeView />} />
+                  </Switch>
+                </AppLayout>
+              </MarketProvider>
+            </AccountsProvider>
           </WalletProvider>
         </ConnectionProvider>
       </HashRouter>
