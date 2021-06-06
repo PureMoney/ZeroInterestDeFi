@@ -11,7 +11,7 @@ export const FarmCard = () => {
         <Title level={5}>Raydium Liquidity Farm</Title>
       </div>
       <Typography className="card-message-body">
-        There are no more LQTY rewards left to farm
+        There are no more VTT rewards left to farm
       </Typography>
     </Card>
   );
