@@ -24,3 +24,133 @@ code {
   background-repeat: no-repeat;
   margin: 0 auto 0 auto;
 }
+
+span.header-balance {
+  margin-right: 16px;
+}
+
+.cards {
+  margin-top: 32px !important;
+  margin-right: 16px !important;
+  margin-left: 16px !important;
+}
+
+.cards:nth-of-type(1)
+{
+  margin-top: 16px !important;
+}
+
+.card-info-msg {
+  display: flex;
+  grid-template-columns: 1fr auto;
+  text-align: left;
+}
+
+.card-message-icon {
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 3px;
+  margin-right: 12px;
+}
+
+.card-message-body {
+  margin-top: 8px;
+}
+
+.card-button {
+  text-align: right;
+  margin-top: 16px;
+}
+
+.stat-row {
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  border-bottom: 1px solid #303030;
+  border-top-color: rgba(0, 0, 0, 0.1);
+  border-right-color: rgba(0, 0, 0, 0.1);
+  border-left-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.stat-left {
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  flex: 1.2 1 0%;
+  font-weight: 200;
+  display: flex;
+}
+
+.stat-right {
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  flex: 0.8 1 0%;
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.align-to-input {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.form-div > * {
+  display: block;
+}
+
+.form-div > span {
+  margin-bottom: 8px;
+}
+
+.form-div .ant-input-group-addon {
+  width: 85px;
+  text-align: left;
+}
+
+.trove-info {
+  margin-top: 16px;
+}
+
+.green-color {
+  color: greenyellow;
+}
+
+.orange-color {
+  color: orangered;
+}
+
+.card-button > button {
+  margin-left: 8px;
+}
+
+.bottom-card {
+  margin-bottom: 32px !important;
+}
+
+.stat-box {
+  border: 1px solid #303030;
+  padding: 4px;
+}
+
+.stat-box > .stat-row:last-child {
+  border-bottom: none !important;
+}
+
+.stat-box .stat-left {
+  margin-left: 7px;
+}
+
+.card-alert {
+  margin-top: 8px !important;
+}
