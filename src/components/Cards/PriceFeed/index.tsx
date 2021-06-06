@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Col, Input, Row, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
-const SOL_VALUE = "$ 49.620";
+const SOL_VALUE = "$ 50.00";
 
 export const PriceFeedCard = () => {
   return (

@@ -126,6 +126,10 @@ span.header-balance {
   color: greenyellow;
 }
 
+.orange-color {
+  color: orangered;
+}
+
 .card-button > button {
   margin-left: 8px;
 }
