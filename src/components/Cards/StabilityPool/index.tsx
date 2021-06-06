@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Button, Card, Input, Typography } from "antd";
+import { Alert, Button, Card, Input, Typography } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import { notify } from "../../../utils/notifications";
 const { Title } = Typography;
 
 export const StabilityPoolCard = () => {
   const [open, setOpen] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [deposit, setDeposit] = useState("0");
 
   return (
     <Card
@@ -16,7 +18,12 @@ export const StabilityPoolCard = () => {
       {confirmed ? (
         <div>
           <div className="form-div">
-            <Input addonBefore={"Deposit"} suffix="ROKS" value="337.33" disabled />
+            <Input
+              addonBefore={"Deposit"}
+              suffix="ROKS"
+              value={deposit}
+              disabled
+            />
           </div>
           <div className="stat-box">
             <div className="stat-row">
@@ -50,7 +57,12 @@ export const StabilityPoolCard = () => {
       ) : open ? (
         <div>
           <div className="form-div">
-            <Input addonBefore={"Deposit"} suffix="ROKS" />
+            <Input
+              addonBefore={"Deposit"}
+              suffix="ROKS"
+              value={deposit}
+              onChange={(text) => setDeposit(text.target.value)}
+            />
           </div>
           <div className="stat-box">
             <div className="stat-row">
@@ -58,9 +70,24 @@ export const StabilityPoolCard = () => {
               <div className="stat-right">42.0%</div>
             </div>
           </div>
+          <Alert
+            className="card-alert"
+            message={`You are depositing ${deposit} ROKS in the stability pool.`}
+            type="info"
+            showIcon
+          />
           <div className="card-button">
             <Button onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="primary" onClick={() => setConfirmed(true)}>
+            <Button
+              type="primary"
+              onClick={() => {
+                setConfirmed(true);
+                notify({
+                  message: "Deposit success",
+                  description: "Stability pool deposit has been successful.",
+                });
+              }}
+            >
               Confirm
             </Button>
           </div>

@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-import { Button, Card, Input, Typography } from "antd";
+import { Alert, Button, Card, Input, Typography } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import { notify } from "../../../utils/notifications";
 const { Title } = Typography;
 
 export const TroveCard = () => {
   const [open, setOpen] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [collateral, setCollateral] = useState("0");
+  const [borrow, setBorrow] = useState("0");
 
   return (
     <Card title="Trove" className="cards">
       {confirmed ? (
         <div>
           <div className="form-div">
-            <Input addonBefore={"Collateral"} suffix="SOL" value="100.00" disabled />
-            <Input addonBefore={"Borrow"} suffix="ROKS" value="2000.00" disabled />
+            <Input
+              addonBefore={"Collateral"}
+              suffix="SOL"
+              disabled
+              value={collateral}
+            />
+            <Input
+              addonBefore={"Borrow"}
+              suffix="ROKS"
+              value={borrow}
+              disabled
+            />
           </div>
           <div className="stat-box">
             <div className="stat-row">
@@ -35,10 +48,13 @@ export const TroveCard = () => {
           </div>
           <div className="card-button">
             <Button>Close Trove</Button>
-            <Button type="primary" onClick={() => {
-              setOpen(true);
-              setConfirmed(false);
-            }}>
+            <Button
+              type="primary"
+              onClick={() => {
+                setOpen(true);
+                setConfirmed(false);
+              }}
+            >
               Adjust
             </Button>
           </div>
@@ -46,8 +62,18 @@ export const TroveCard = () => {
       ) : open ? (
         <div>
           <div className="form-div">
-            <Input addonBefore={"Collateral"} suffix="SOL" />
-            <Input addonBefore={"Borrow"} suffix="ROKS" />
+            <Input
+              addonBefore={"Collateral"}
+              suffix="SOL"
+              onChange={(text) => setCollateral(text.target.value)}
+              value={collateral}
+            />
+            <Input
+              addonBefore={"Borrow"}
+              suffix="ROKS"
+              value={borrow}
+              onChange={(text) => setBorrow(text.target.value)}
+            />
           </div>
           <div className="stat-box">
             <div className="stat-row">
@@ -67,9 +93,24 @@ export const TroveCard = () => {
               <div className="stat-right green-color">120%</div>
             </div>
           </div>
+          <Alert
+            className="card-alert"
+            message={`You wil deposit ${collateral} SOL and receive ${borrow} ROKS.`}
+            type="info"
+            showIcon
+          />
           <div className="card-button">
             <Button onClick={() => setOpen(false)}>Cancel</Button>
-            <Button type="primary" onClick={() => setConfirmed(true)}>
+            <Button
+              type="primary"
+              onClick={() => {
+                setConfirmed(true);
+                notify({
+                  message: "Trove Created",
+                  description: "Trove was successfully created.",
+                });
+              }}
+            >
               Confirm
             </Button>
           </div>

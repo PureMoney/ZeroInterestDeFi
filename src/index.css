@@ -146,3 +146,7 @@ span.header-balance {
 .stat-box .stat-left {
   margin-left: 7px;
 }
+
+.card-alert {
+  margin-top: 8px !important;
+}
