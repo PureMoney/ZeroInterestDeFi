@@ -1,0 +1,20 @@
+[package]
+name = "reward-token"
+version = "0.1.0"
+description = "Zero Interest: Reward Token Staking"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "reward_token"
+
+[features]
+no-entrypoint = []
+no-idl = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.6.0"
+anchor-spl = "0.6.0"
+spl-token = { version = "3.1.1", features = ["no-entrypoint"] }
