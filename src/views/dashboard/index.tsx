@@ -11,6 +11,7 @@ export const DashboardContent = () => {
         <Cards.StakingCard />
       </Col>
       <Col span={10}>
+        <Cards.PriceFeedCard />
         <Cards.StatisticsCard />
       </Col>
     </Row>
