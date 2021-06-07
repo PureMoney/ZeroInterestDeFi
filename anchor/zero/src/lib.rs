@@ -57,7 +57,7 @@ pub struct InitializeMarket<'info> {
     #[account(init)]
     pub borrowing_fees_pot: AccountInfo<'info>,
 
-    // Where all the borrowing fees are directed
+    // Where all stablecoin lenders are depositing
     #[account(init)]
     pub stability_pool: AccountInfo<'info>,
 
