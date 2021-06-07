@@ -1,6 +1,7 @@
 target/bpfel-unknown-unknown/
 target/deploy/
 target/release/
+target/debug/
 test-ledger/
 .anchor/
 
