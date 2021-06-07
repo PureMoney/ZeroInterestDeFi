@@ -1,8 +1,0 @@
-[workspace]
-members = [
-    "main",
-    "token/spl",
-    "token/cli",
-    "associated-token-account",
-    "memo"
-]
