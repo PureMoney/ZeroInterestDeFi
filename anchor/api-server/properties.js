@@ -2,7 +2,7 @@
 const path = require('path')
 require('dotenv-safe').config({ allowEmptyValues: true, path: path.resolve(__dirname, '../.env'), example: path.resolve(__dirname, '../.env.example') })
 
-const devMode = process.env.DEV_MODE === '1' // Set to false only when running in remit.rocks
+const devMode = true // Set to false only when running in prod server
 console.log("devMode: ", devMode)
 
 const sysmode = devMode ? 'dev' : 'prod'
@@ -64,6 +64,7 @@ const ws_options = {
 const secret = process.env.SECRET
 
 export default {
+    devMode,
     publicPath: '../client/build',
 	port: 3003,
     tokenSecret: "Insert Your Secret Token",
