@@ -5,8 +5,8 @@ import bodyParser from "body-parser";
 import path from "path";
 
 // Swagger
-// import swaggerUi from "swagger-ui-express";
-// import yaml from "yamljs";
+import swaggerUi from "swagger-ui-express";
+import yaml from "yamljs";
 
 // Security
 import cors from "cors";
@@ -53,12 +53,12 @@ class Server {
 		this.app.use(cors(corsOptionsDelegate));
 
 		// Swagger
-		// const swaggerDocument = yaml.load("./swagger.yaml");
-		// this.app.use(
-		// 	"/api/docs",
-		// 	swaggerUi.serve,
-		// 	swaggerUi.setup(swaggerDocument)
-		// );
+		const swaggerDocument = yaml.load("./swagger.yaml");
+		this.app.use(
+			"/api/docs",
+			swaggerUi.serve,
+			swaggerUi.setup(swaggerDocument)
+		);
 
 		// Redirect frontend
 		this.app.use("*", (req, res, next) => {
@@ -89,9 +89,9 @@ class Server {
 
 		await server.listen(properties.port);
 		Logger.info("Server started on port " + properties.port);
-		// Logger.info(
-		// 	"Swagger docs at http://localhost:" + properties.port + "/api/docs"
-		// );
+		Logger.info(
+			"Swagger docs at http://localhost:" + properties.port + "/api/docs"
+		);
 
 		// Import controllers
 		const router = express.Router();

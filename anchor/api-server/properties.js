@@ -65,7 +65,7 @@ const secret = process.env.SECRET
 
 export default {
     devMode,
-    publicPath: '../client/build',
+    publicPath: '/api/docs',
 	port: 3003,
     tokenSecret: "Insert Your Secret Token",
     api: "/api",

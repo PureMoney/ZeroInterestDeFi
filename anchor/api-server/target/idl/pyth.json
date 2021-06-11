@@ -40,21 +40,7 @@
       "args": []
     }
   ],
-  "accounts": [
-    {
-      "name": "PythData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "data",
-            "type": "u64"
-          }
-        ]
-      }
-    }
-  ],
   "metadata": {
-    "address": "4EkhVQ2toDqNveXeHCke9JJqytT8XDXT2xzXU4Vspc1d"
+    "address": "FEbuboSk36n6oV1JPnpTtj6NrF68MPF8zquAR83FuSbn"
   }
 }

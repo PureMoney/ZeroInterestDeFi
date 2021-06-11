@@ -1,4 +1,5 @@
 use anchor_lang::prelude::*;
+use pyth_client::*;
 
 #[program]
 pub mod pyth {
@@ -6,6 +7,7 @@ pub mod pyth {
 
     // initialize allows this program to "internally own" the input account
     pub fn initialize(_ctx: Context<Initialize>) -> ProgramResult {
+        msg!("initialization done");
         Ok(())
     }
 
@@ -14,17 +16,17 @@ pub mod pyth {
         let pyth_price_info = &mut ctx.accounts.pyth_price_info;
     
         let pyth_product_data = &pyth_product_info.try_borrow_data()?;
-        let pyth_product = pyth_client::cast::<pyth_client::Product>(pyth_product_data);
+        let pyth_product = cast::<Product>(pyth_product_data);
     
-        if pyth_product.magic != pyth_client::MAGIC {
+        if pyth_product.magic != MAGIC {
             msg!("Pyth product account provided is not a valid Pyth account");
             return Err(ProgramError::InvalidArgument.into());
         }
-        if pyth_product.atype != pyth_client::AccountType::Product as u32 {
+        if pyth_product.atype != AccountType::Product as u32 {
             msg!("Pyth product account provided is not a valid Pyth product account");
             return Err(ProgramError::InvalidArgument.into());
         }
-        if pyth_product.ver != pyth_client::VERSION_1 {
+        if pyth_product.ver != VERSION_1 {
             msg!("Pyth product account provided has a different version than the Pyth client");
             return Err(ProgramError::InvalidArgument.into());
         }
@@ -40,23 +42,22 @@ pub mod pyth {
         }
 
         // put data in caller's account data
-        let pyth_price_data = &pyth_price_info.try_borrow_data()?;
+        let pyth_price_data = pyth_price_info.data.borrow();
         msg!(" pyth_price_data.len = {}", pyth_price_data.len());
-        let price_data = pyth_client::cast::<pyth_client::Price>(pyth_price_data);
 
-        let account_data = &ctx.accounts.my_account.try_borrow_mut_data()?;
+        let mut account_data = ctx.accounts.my_account.data.borrow_mut();
         msg!(" account_data.len = {}", account_data.len());
-        let account_price_data = &mut pyth_client::cast::<pyth_client::Price>(account_data);
 
-        *account_price_data = price_data; // copy semantics
+        let mut u: usize = 0;
 
-        msg!("  my_account .. {:?}", ctx.accounts.my_account.key);
-        msg!("    exponent ..... {}", account_price_data.expo);
-        msg!("    price ........ {}", account_price_data.agg.price);
-        msg!("    conf ......... {}", account_price_data.agg.conf);
-        msg!("    valid_slot ... {}", account_price_data.valid_slot);
-        msg!("    publish_slot . {}", account_price_data.agg.pub_slot);
-        msg!("    valid slot:    {}", account_price_data.valid_slot);
+        // *account_data = *pyth_price_data; // copy semantics for RefCell, not contents
+        // (*account_data)[0..300] = (*pyth_price_data)[0..300]; // slices have dynamic size, so can't copy
+
+        // just use good old loop to copy (works!)
+        while u < 512 {
+            (*account_data)[u] = (*pyth_price_data)[u];
+            u = u + 1;
+        }
     
         Ok(())
     }
@@ -65,7 +66,7 @@ pub mod pyth {
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(init)]
-    pub my_account: ProgramAccount<'info, PythData>, // acct owned by program
+    pub my_account: AccountInfo<'info>, // ProgramAccount<'info, PythData>, // acct owned by program
     pub rent: Sysvar<'info, Rent>,
 }
 
@@ -77,8 +78,8 @@ pub struct GetPrice<'info> {
     pub pyth_price_info: AccountInfo<'info>,
 }
 
-#[account]
-pub struct PythData {
-    pub data: u64,
-}
+// #[account]
+// pub struct PythData {
+//     pub data: u64,
+// }
 

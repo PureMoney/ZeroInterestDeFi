@@ -2,6 +2,9 @@
 // Properties
 import Properties from "../properties";
 
+// Logging
+import Logger from "../classes/Logger";
+
 // Solana anchor
 const anchor = require("@project-serum/anchor");
 // const serumCmn = require("@project-serum/common");
@@ -16,19 +19,19 @@ let provider = null;
 let program = null;
 let myAccount = null;
 
-console.log("PythController");
+Logger.info("PythController");
 
 const pythController = {
   /**
    * Init routes
    */
   init: router => {
-    console.log("PythController.init");
+    Logger.info("PythController.init");
 
     // Use a local or env provider.
     provider = anchor.Provider.env();
 
-    // console.log('provider = ', provider);
+    // Logger.info('provider = ', provider);
 
     // Configure the client to use the local cluster.
     anchor.setProvider(provider);
@@ -41,11 +44,11 @@ const pythController = {
 
     // call pyth init routine
     pythController.pythInit();
-    console.log("pythInit started")
+    Logger.info("pythInit started")
 
     const baseUrl = `${Properties.api}`;
     // router.post(baseUrl + "/pyth-init", pythController.pythInit);
-    router.post(baseUrl + "/get-sol-price", pythController.getSOLprice);
+    router.get(baseUrl + "/get-sol-price", pythController.getSOLprice);
   },
 
   /**
@@ -54,7 +57,7 @@ const pythController = {
    */
   pythInit: async () => {
     try {
-      console.log("pythInit start");
+      Logger.info("pythInit start");
       await program.rpc.initialize({
         accounts: {
           myAccount: myAccount.publicKey,
@@ -65,22 +68,44 @@ const pythController = {
           anchor.web3.SystemProgram.createAccount({
             fromPubkey: provider.wallet.publicKey,
             newAccountPubkey: myAccount.publicKey,
-            space: 8 + 1704, // Add 8 for the account discriminator.
+            space: 8 + 300, // Add 8 for the account discriminator.
             lamports: await provider.connection.getMinimumBalanceForRentExemption(
-              8 + 1704
+              8 + 300
             ),
             programId: program.programId,
           }),
         ],
       });
-      console.log("pythInit done, myAccount = ", myAccount.publicKey);
+      Logger.info("pythInit done, myAccount = ", myAccount.publicKey);
     } catch (err) {
       const safeErr = ErrorManager.getSafeError(err);
-      console.error(safeErr.message);
+      Logger.error(safeErr.message);
     }
   },
 
-  getSOLprice: async (req, res) => {}
+  // Get SOL price from Pyth oracle
+  // Inputs: none
+  getSOLprice: async (req, res) => {
+    Logger.info("getSOLprice, req.headers", req.headers);
+
+    const pythProdKey = new anchor.web3.PublicKey("8yrQMUyJRnCJ72NWwMiPV9dNGw465Z8bKUvnUC8P5L6F");
+    const pythSOLPriceProgKey = new anchor.web3.PublicKey("BdgHsXrH1mXqhdosXavYxZgX6bGqTdj5mh2sxDhF8bJy");
+
+    // Execute the RPC.
+    // #region code-separated
+    await program.rpc.getPrice({
+      accounts: {
+        myAccount: myAccount.publicKey,
+        pythProductInfo: pythProdKey,
+        pythPriceInfo: pythSOLPriceProgKey
+      }
+    });
+
+    const accountInfo = await provider.connection.getAccountInfo(myAccount.publicKey);
+    Logger.info('data = ', accountInfo);
+
+    res.json(accountInfo);
+  }
 };
 
 export default pythController;
