@@ -7,7 +7,6 @@ console.log("devMode: ", devMode)
 const sysmode = devMode ? 'dev' : 'prod'
 console.log('sysmode: ', sysmode)
 
-// ROKS (origin) API CORS Settings
 // Allowed DEV origin
 // Add localhost here if working on local environment
 // Do not include the protocol (root host only)

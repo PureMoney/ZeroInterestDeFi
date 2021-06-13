@@ -1,25 +1,27 @@
 import React from "react";
 import { Card, Col, Input, Row, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
-import { usePrice } from "../../../contexts/price";
+import { usePrice, useUpdatePrice } from "../../../contexts/price";
 
 export const PriceFeedCard = () => {
   const SOL_VALUE = usePrice();
+  const updatePrice = useUpdatePrice();
   return (
     <Card title="Price" className="cards">
       <Row>
         <Col span={2} className="align-to-input">
           SOL
         </Col>
-        <Col span={8}>
+        <Col span={18}>
           <Input
             suffix={
               <Tooltip title={"Current SOL value to USD is " + SOL_VALUE + "."}>
                 <InfoCircleOutlined />
               </Tooltip>
             }
-            disabled={true}
             value={`$${SOL_VALUE.toFixed(2)}`}
+            // eslint-disable-next-line
+            addonAfter={<a onClick={() => updatePrice()}>Refresh</a>}
           />
         </Col>
       </Row>

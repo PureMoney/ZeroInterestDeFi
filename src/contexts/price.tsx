@@ -1,14 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { useConnection } from "./connection";
-import { PublicKey } from "@solana/web3.js";
+import { Connection, PublicKey } from "@solana/web3.js";
 import { parsePriceData } from "@pythnetwork/client";
-import { useConnectionConfig } from "./connection";
+import { ENV, useConnectionConfig } from "./connection";
 
 /**
  * Interface for the SOL price to USD
  */
 interface PriceConfig {
   solUsdPrice: number;
+  updateSolPrice: () => void;
 }
 
 /**
@@ -16,6 +23,7 @@ interface PriceConfig {
  */
 const PriceContext = React.createContext<PriceConfig>({
   solUsdPrice: 0,
+  updateSolPrice: () => {},
 });
 
 // This is a map of the program addresses of the
@@ -26,6 +34,36 @@ const PricePrograms = {
   testnet: "",
   devnet: "HffCRbY8sq5YVVdYZ3m2KJDNQ2mN1kxJ5iPFqxrNwDKf",
   localnet: "",
+};
+
+/**
+ * Async function that requests the price account for the updated
+ * SOL value
+ *
+ * @param env {ENV} either mainnet / test net / dev net
+ * @param connection {Connection} object
+ * @param setSolUsdPrice Setter of the solUsdPrice
+ */
+const updateSolPrice = (
+  env: ENV,
+  connection: Connection,
+  setSolUsdPrice: Dispatch<SetStateAction<number>>
+) => {
+  // Get the correct program address based on the current env set
+  const pubKey = PricePrograms[env];
+  // Do not proceed if there is neither connection nor program address
+  if (!connection || !pubKey) {
+    return;
+  }
+  // Perform the price retrieval by getting the data of the price account
+  connection.getAccountInfo(new PublicKey(pubKey)).then((accountInfo) => {
+    const data = accountInfo?.data;
+    if (data) {
+      const buffer = Buffer.from(data);
+      const priceData = parsePriceData(buffer);
+      setSolUsdPrice(priceData.price);
+    }
+  });
 };
 
 /**
@@ -40,30 +78,20 @@ export function PriceProvider({ children = undefined as any }) {
   const connection = useConnection();
 
   // Get the current configuration set
-  const config = useConnectionConfig();
+  const env = useConnectionConfig().env;
 
-  // Fetch the current price of SOLD in USD
+  // Perform updating of sol price every after render
   useEffect(() => {
-    // Get the correct program address based on the current env set
-    const pubKey = PricePrograms[config.env];
-    // Do not proceed if there is neither connection nor program address
-    if (!connection || !pubKey) {
-      return;
-    }
-    // Perform the price retrieval by getting the data of the price account
-    connection.getAccountInfo(new PublicKey(pubKey)).then((accountInfo) => {
-      const data = accountInfo?.data;
-      if (data) {
-        const buffer = Buffer.from(data);
-        const priceData = parsePriceData(buffer);
-        setSolUsdPrice(priceData.price);
-      }
-    });
-  });
+    updateSolPrice(env, connection, setSolUsdPrice);
+  }, [env, connection, setSolUsdPrice]);
+
   return (
     <PriceContext.Provider
       value={{
         solUsdPrice,
+        updateSolPrice: () => {
+          updateSolPrice(env, connection, setSolUsdPrice);
+        },
       }}
     >
       {children}
@@ -77,4 +105,12 @@ export function PriceProvider({ children = undefined as any }) {
  */
 export function usePrice() {
   return useContext(PriceContext).solUsdPrice;
+}
+
+/**
+ * Use this method to update the current price of sol
+ * @returns Method for updating SOL
+ */
+ export function useUpdatePrice() {
+  return useContext(PriceContext).updateSolPrice;
 }
