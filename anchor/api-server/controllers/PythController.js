@@ -1,111 +1,62 @@
-// Get SOL price from Pyth oracle
-// Properties
+/**
+ * Get SOL price from Pyth oracle
+ */
 import Properties from "../properties";
-
-// Logging
-import Logger from "../classes/Logger";
-
-// Solana anchor
-const anchor = require("@project-serum/anchor");
-// const serumCmn = require("@project-serum/common");
-// const spl = require("@solana/spl-token");
-// const REWARD_TOKEN_MINT = new anchor.web3.PublicKey("8LqpxvoA6pmXMoxDEYVmNTMvawLZLL6dkzFstDK1B9eb");
-
-// Errors
-import ErrorManager from "../classes/ErrorManager";
-// import Errors from "../classes/Errors";
+import * as anchor from "@project-serum/anchor";
+import { PublicKey } from "@solana/web3.js";
 
 let provider = null;
 let program = null;
-let myAccount = null;
 
-Logger.info("PythController");
+// Extract the values from the properties file
+const {
+  BASE_API_URL,
+  PYTH_PRODUCT_KEY,
+  PYTH_SOL_PRICE_PROG_KEY,
+  PRICE_ACCOUNT_KEY,
+} = Properties;
 
-const pythController = {
+// Create the public key for each relevant account
+const priceAcctKey = new PublicKey(PRICE_ACCOUNT_KEY);
+const pythnProductInfoKey = new PublicKey(PYTH_PRODUCT_KEY);
+const pythPriceInfoKey = new PublicKey(PYTH_SOL_PRICE_PROG_KEY);
+
+const PythController = {
   /**
    * Init routes
    */
   init: router => {
-    Logger.info("PythController.init");
-
-    // Use a local or env provider.
+    // Extract provider from the env variable
+    // ANCHOR_PROVIDER_URL
     provider = anchor.Provider.env();
-
-    // Logger.info('provider = ', provider);
 
     // Configure the client to use the local cluster.
     anchor.setProvider(provider);
 
-    // connect to the Pyth oracle program
+    // Connect to the Pyth oracle program
     program = anchor.workspace.Pyth;
 
-    // create new account whenever init occurs
-    myAccount = anchor.web3.Keypair.generate();
-
-    // call pyth init routine
-    pythController.pythInit();
-    Logger.info("pythInit started")
-
-    const baseUrl = `${Properties.api}`;
-    // router.post(baseUrl + "/pyth-init", pythController.pythInit);
-    router.get(baseUrl + "/get-sol-price", pythController.getSOLprice);
+    // Register router
+    router.get(BASE_API_URL + "/refresh-price", PythController.updateSolPrice);
   },
 
   /**
-   * Initialization function
-   *
+   * Update SOL price from Pyth oracle
+   * @param {Object} req Http Request object
+   * @param {Object} res Http Response object
    */
-  pythInit: async () => {
-    try {
-      Logger.info("pythInit start");
-      await program.rpc.initialize({
-        accounts: {
-          myAccount: myAccount.publicKey,
-          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
-        },
-        signers: [myAccount],
-        instructions: [
-          anchor.web3.SystemProgram.createAccount({
-            fromPubkey: provider.wallet.publicKey,
-            newAccountPubkey: myAccount.publicKey,
-            space: 8 + 300, // Add 8 for the account discriminator.
-            lamports: await provider.connection.getMinimumBalanceForRentExemption(
-              8 + 300
-            ),
-            programId: program.programId,
-          }),
-        ],
-      });
-      Logger.info("pythInit done, myAccount = ", myAccount.publicKey);
-    } catch (err) {
-      const safeErr = ErrorManager.getSafeError(err);
-      Logger.error(safeErr.message);
-    }
-  },
-
-  // Get SOL price from Pyth oracle
-  // Inputs: none
-  getSOLprice: async (req, res) => {
-    Logger.info("getSOLprice, req.headers", req.headers);
-
-    const pythProdKey = new anchor.web3.PublicKey("8yrQMUyJRnCJ72NWwMiPV9dNGw465Z8bKUvnUC8P5L6F");
-    const pythSOLPriceProgKey = new anchor.web3.PublicKey("BdgHsXrH1mXqhdosXavYxZgX6bGqTdj5mh2sxDhF8bJy");
-
+  updateSolPrice: async (req, res) => {
     // Execute the RPC.
-    // #region code-separated
     await program.rpc.getPrice({
       accounts: {
-        myAccount: myAccount.publicKey,
-        pythProductInfo: pythProdKey,
-        pythPriceInfo: pythSOLPriceProgKey
+        myAccount: priceAcctKey,
+        pythProductInfo: pythnProductInfoKey,
+        pythPriceInfo: pythPriceInfoKey
       }
     });
-
-    const accountInfo = await provider.connection.getAccountInfo(myAccount.publicKey);
-    Logger.info('data = ', accountInfo);
-
-    res.json(accountInfo);
+    // Return success
+    res.json("Success");
   }
 };
 
-export default pythController;
+export default PythController;
