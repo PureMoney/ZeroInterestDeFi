@@ -12,21 +12,17 @@ console.log('sysmode: ', sysmode)
 // Add localhost here if working on local environment
 // Do not include the protocol (root host only)
 const allowedDevRoksOrigin = [
-    "https://send.rockstable.io",
 ]
 // Allowed PROD origin
 const allowedProdRoksOrigin = [
-    "https://remit.rocks",
 ]
 
 // Azure (origin) API CORS Settings
 // Allowed DEV origin
 const allowedDevAzureOrigin = [
-    "https://prod-03.westus2.logic.azure.com",
 ]
 // Allowed PROD origin
 const allowedProdAzureOrigin = [
-    "https://prod-31.westus2.logic.azure.com",
 ]
 
 const roks = devMode ? allowedDevRoksOrigin : allowedProdRoksOrigin
