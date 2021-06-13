@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Col, Input, Row, Tooltip } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
-
-const SOL_VALUE = "$ 50.00";
+import { usePrice } from "../../../contexts/price";
 
 export const PriceFeedCard = () => {
+  const SOL_VALUE = usePrice();
   return (
     <Card title="Price" className="cards">
       <Row>
@@ -19,7 +19,7 @@ export const PriceFeedCard = () => {
               </Tooltip>
             }
             disabled={true}
-            value={SOL_VALUE}
+            value={`$${SOL_VALUE.toFixed(2)}`}
           />
         </Col>
       </Row>
