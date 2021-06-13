@@ -1,0 +1,264 @@
+{
+  "version": "0.0.0",
+  "name": "zero",
+  "instructions": [
+    {
+      "name": "initializeMarket",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "globalState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "borrowingFeesPot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stabilityPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stablecoinMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initializeTrove",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "trove",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "depositSolCollateralAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stablecoinBorrowingAssociatedAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "depositCollateral",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "globalState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "trove",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "depositSolCollateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "borrowStablecoin",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "globalState",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "trove",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stablecoinMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stablecoinBorrowingAssociatedAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "stablecoinMintAuthorityPda",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "debug",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "GlobalStateData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "initialMarketOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenProgramId",
+            "type": "publicKey"
+          },
+          {
+            "name": "borrowingFeesReceiver",
+            "type": "publicKey"
+          },
+          {
+            "name": "stabilityPool",
+            "type": "publicKey"
+          },
+          {
+            "name": "stablecoinMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "stablecoinMintAuthority",
+            "type": "publicKey"
+          },
+          {
+            "name": "stablecoinBorrowed",
+            "type": "u64"
+          },
+          {
+            "name": "depositedSol",
+            "type": "u64"
+          },
+          {
+            "name": "baseRate",
+            "type": "u64"
+          },
+          {
+            "name": "requiredMcr",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TroveData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "depositSolCollateralAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "stablecoinBorrowingAssociatedAccount",
+            "type": "publicKey"
+          },
+          {
+            "name": "stablecoinBorrowed",
+            "type": "u64"
+          },
+          {
+            "name": "depositedSol",
+            "type": "u64"
+          },
+          {
+            "name": "atBaseRate",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "2aS8Qew4bh4C1N1qGMAS2JN4XhgX4djX6Arhpo8v52K9"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "version": "0.0.0",
+  "name": "pyth",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "myAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "getPrice",
+      "accounts": [
+        {
+          "name": "myAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pythProductInfo",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pythPriceInfo",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "metadata": {
+    "address": "FEbuboSk36n6oV1JPnpTtj6NrF68MPF8zquAR83FuSbn"
+  }
+}

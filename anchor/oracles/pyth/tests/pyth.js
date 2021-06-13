@@ -58,7 +58,7 @@ describe("Pyth Tests on Node", () => {
     });
 
     const accountInfo = await provider.connection.getAccountInfo(myAccount.publicKey);
-    console.log('data = ', accountInfo.data);
+    console.log('accountInfo = ', accountInfo);
 
     assert.ok(accountInfo.data);
     // #endregion code-separated
