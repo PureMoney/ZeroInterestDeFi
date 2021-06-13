@@ -10,7 +10,12 @@ const columns = [
   {
     dataIndex: "",
     key: "x",
-    render: () => <DeleteOutlined />,
+    render: () => (
+      // eslint-disable-next-line
+      <a>
+        <DeleteOutlined />
+      </a>
+    ),
   },
 ];
 
@@ -42,10 +47,5 @@ const data = [
 ];
 
 export const RiskyTrovesTable = () => {
-  return (
-    <Table
-      columns={columns}
-      dataSource={data}
-    />
-  );
+  return <Table columns={columns} dataSource={data} />;
 };
