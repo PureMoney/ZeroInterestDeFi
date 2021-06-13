@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Alert, Button, Card, Input, Typography } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import { Alert, Button, Card, Input } from "antd";
 import { notify } from "../../../utils/notifications";
-const { Title } = Typography;
-
-const priceOfSol = 50;
+import { usePrice } from "../../../contexts/price";
 
 // (SOL * Current Price of SOL / ROKS borrowed) * 100%
-const getCollRatio = (collateral: number, borrow: number) => {
+const getCollRatio = (
+  collateral: number,
+  borrow: number,
+  priceOfSol: number
+) => {
   const result = ((collateral * priceOfSol) / borrow) * 100;
   return isFinite(result) ? result.toFixed(2) : 0.0;
 };
@@ -18,7 +19,8 @@ export const TroveCard = () => {
   const [collateral, setCollateral] = useState(0);
   const [borrow, setBorrow] = useState(0);
 
-  const ratio = getCollRatio(collateral, borrow) || 0;
+  const priceOfSol = usePrice();
+  const ratio = getCollRatio(collateral, borrow, priceOfSol) || 0;
   const isValid = ratio >= 150;
   const ratioColor = isValid ? "green-color" : "orange-color";
 
@@ -150,13 +152,12 @@ export const TroveCard = () => {
         </div>
       ) : (
         <>
-          <div className="card-info-msg">
-            <InfoCircleOutlined className="card-message-icon" />
-            <Title level={5}>You haven't borrowed any ROKS yet.</Title>
-          </div>
-          <Typography className="card-message-body">
-            You can borrow ROKS by opening a Trove.
-          </Typography>
+          <Alert
+            message={`You haven't borrowed any ROKS yet.`}
+            description={"You can borrow ROKS by opening a Trove."}
+            type="info"
+            showIcon
+          />
           <div className="card-button">
             <Button type="primary" onClick={() => setOpen(true)}>
               Open Trove

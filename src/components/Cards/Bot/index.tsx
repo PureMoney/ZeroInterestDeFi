@@ -1,7 +1,6 @@
 import React from "react";
-import { Card, Typography } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
-const { Paragraph, Title } = Typography;
+import { Alert, Card, Typography } from "antd";
+const { Paragraph } = Typography;
 
 const liquidationMessage = (
   <Paragraph className="card-message-body">
@@ -28,11 +27,12 @@ const redemptionMessage = (
 export const BotCard = (props: { liquidation: boolean }) => {
   return (
     <Card title="Bot Actions" className="cards">
-      <div className="card-info-msg">
-        <InfoCircleOutlined className="card-message-icon" />
-        <Title level={5}>Bot functionality</Title>
-      </div>
-      {props.liquidation ? liquidationMessage : redemptionMessage}
+      <Alert
+        message={`Bot functionality`}
+        description={props.liquidation ? liquidationMessage : redemptionMessage}
+        type="info"
+        showIcon
+      />
     </Card>
   );
 };

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Alert, Button, Card, Input, Typography } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import { Alert, Button, Card, Input } from "antd";
 import { notify } from "../../../utils/notifications";
-const { Title } = Typography;
 
 export const StakingCard = () => {
   const [open, setOpen] = useState(false);
@@ -48,7 +46,12 @@ export const StakingCard = () => {
       ) : open ? (
         <div>
           <div className="form-div">
-            <Input addonBefore={"Stake"} suffix="VTT" value={stake} onChange={(text) => setStake(text.target.value)} />
+            <Input
+              addonBefore={"Stake"}
+              suffix="VTT"
+              value={stake}
+              onChange={(text) => setStake(text.target.value)}
+            />
           </div>
           <div className="stat-box">
             <div className="stat-row">
@@ -80,13 +83,14 @@ export const StakingCard = () => {
         </div>
       ) : (
         <div>
-          <div className="card-info-msg">
-            <InfoCircleOutlined className="card-message-icon" />
-            <Title level={5}>You haven't staked VTT yet.</Title>
-          </div>
-          <Typography className="card-message-body">
-            Stake VTT to earn a share of borrowing and redemption fees.
-          </Typography>
+          <Alert
+            message={`You haven't staked VTT yet.`}
+            description={
+              "Stake VTT to earn a share of borrowing and redemption fees."
+            }
+            type="info"
+            showIcon
+          />
           <div className="card-button">
             <Button type="primary" onClick={() => setOpen(true)}>
               Start staking

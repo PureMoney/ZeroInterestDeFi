@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Alert, Button, Card, Input, Typography } from "antd";
-import { InfoCircleOutlined } from "@ant-design/icons";
+import { Alert, Button, Card, Input } from "antd";
 import { notify } from "../../../utils/notifications";
-const { Title } = Typography;
 
 export const StabilityPoolCard = () => {
   const [open, setOpen] = useState(false);
@@ -94,13 +92,12 @@ export const StabilityPoolCard = () => {
         </div>
       ) : (
         <div>
-          <div className="card-info-msg">
-            <InfoCircleOutlined className="card-message-icon" />
-            <Title level={5}>You have no ROKS in the Stability Pool.</Title>
-          </div>
-          <Typography className="card-message-body">
-            You can earn SOL and VTT rewards by depositing ROKS.
-          </Typography>
+          <Alert
+            message={`You have no ROKS in the Stability Pool.`}
+            description={"You can earn SOL and VTT rewards by depositing ROKS."}
+            type="info"
+            showIcon
+          />
           <div className="card-button">
             <Button type="primary" onClick={() => setOpen(true)}>
               Deposit
