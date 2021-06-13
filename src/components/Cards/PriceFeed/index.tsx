@@ -4,7 +4,7 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import { usePrice, useUpdatePrice } from "../../../contexts/price";
 
 export const PriceFeedCard = () => {
-  const SOL_VALUE = usePrice();
+  const SOL_VALUE = usePrice().toFixed(2);
   const updatePrice = useUpdatePrice();
   return (
     <Card title="Price" className="cards">
@@ -19,7 +19,7 @@ export const PriceFeedCard = () => {
                 <InfoCircleOutlined />
               </Tooltip>
             }
-            value={`$${SOL_VALUE.toFixed(2)}`}
+            value={`$${SOL_VALUE}`}
             // eslint-disable-next-line
             addonAfter={<a onClick={() => updatePrice()}>Refresh</a>}
           />
