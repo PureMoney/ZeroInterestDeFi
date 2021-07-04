@@ -63,7 +63,7 @@ export default {
     PYTH_SOL_PRICE_PROG_KEY: process.env.PYTH_SOL_PRICE_PROG_KEY,
     PRICE_ACCOUNT_KEY: process.env.PRICE_ACCOUNT_KEY,
     publicPath: '/api/docs',
-    port: 3003,
+    port: 3001,
 
     devMode,
     tokenSecret: "Insert Your Secret Token",

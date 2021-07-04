@@ -1,6 +1,15 @@
 # pull the base image
 FROM node:14.17.1
 
+# install solana
+RUN sh -c "$(curl -sSfL https://release.solana.com/v1.7.3/install)"
+
+# Make the directory to where the id.json is saved
+RUN mkdir -p root/.config/solana
+
+# Copy the id.json to the root
+COPY id.json root/.config/solana
+
 # set the working direction
 WORKDIR /app
 
@@ -8,18 +17,9 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
-COPY package.json ./
-
-COPY yarn.lock ./
-
-RUN mkdir -p root/.config/solana
+COPY package*.json ./
 
 RUN yarn install
-
-RUN sh -c "$(curl -sSfL https://release.solana.com/v1.7.3/install)"
-
-# dont know the correct path to copy this
-COPY id.json ./
 
 # add app
 COPY . ./
