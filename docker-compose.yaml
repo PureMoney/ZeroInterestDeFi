@@ -1,0 +1,15 @@
+version: '3'
+services:
+  nodejs-server:
+    build:
+      context: ./api-server
+    ports:
+      - "3001:3001"
+    container_name: node-api
+  react-ui:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    container_name: web_app
+    stdin_open: true

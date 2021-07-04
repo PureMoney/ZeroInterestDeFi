@@ -20,7 +20,7 @@ module.exports = {
   ],
   devServer: whenDev(() => ({
     https: true,
-    pfx: fs.readFileSync(path.resolve("./localhost.pfx")),
-    pfxPassphrase: "temp123!"
+    // pfx: fs.readFileSync(path.resolve("./localhost.pfx")),
+    // pfxPassphrase: "temp123!"
   }))
 };
