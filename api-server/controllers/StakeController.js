@@ -96,7 +96,7 @@ const StakeController = {
       });
 
     } catch (error) {
-      // Log the error if 
+      // Log the error if it happens
       console.error(error);
 
       // Return status 500
@@ -133,6 +133,7 @@ const StakeController = {
 
       res.json("Unstaking success");
     } catch (error) {
+      // Log the error if it happens
       console.error(error)
       res.status(500);
       res.json("Unstaking failed. " + error.toString());
