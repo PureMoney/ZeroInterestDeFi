@@ -21,6 +21,7 @@ import properties from "../properties.js";
 // Controllers
 import SecurityController from "../controllers/SecurityController";
 import PythController from "../controllers/PythController";
+import StakeController from "../controllers/StakeController";
 
 // Start Import Controllers
 
@@ -97,6 +98,7 @@ class Server {
 		const router = express.Router();
 		SecurityController.init(router);
 		PythController.init(router);
+		StakeController.init(router);
 		// End Init Controllers
 
 		this.app.use("/", router);
