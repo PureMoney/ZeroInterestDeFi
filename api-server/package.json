@@ -22,7 +22,7 @@
     "dotenv": "^10.0.0",
     "dotenv-safe": "^8.2.0",
     "esm": "^3.2.22",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-jwt": "^6.0.0",
     "helmet": "^3.23.3",
     "joi": "6.10.1",
